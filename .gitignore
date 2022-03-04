@@ -102,3 +102,11 @@ dist
 
 # TernJS port file
 .tern-port
+
+# tokens, passwords
+config.js
+
+# csv files
+project_data/product.csv
+project_data/answers.csv
+project_data/questions.csv
