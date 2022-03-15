@@ -9,28 +9,44 @@ app.use(express.urlencoded({extended: true}));
 
 
   app.get('/qa/questions/', (req, res) => {
-    //  console.log('request object: ', req.query)
-  getAllQuestions(req.query.product_id, (err, results) => {
-    if (err) {
-      res.status(400).send('Error Retrieving Product Info')
-    } else {
-      // console.log('results: ', res);
-      res.status(200).send(results);
-    }
+  console.log('request id: ', req.query.product_id)
+  getAllQuestions(req.query.product_id)
+  .then((queryResults)=> {
+    console.log(queryResults);
+    res.status(200).send(queryResults);
+  })
+  .catch((err)=> {
+    console.log(err);
   })
 });
 
-app.get('/qa/questions/:question_id/answers', (req, res) => {
-  //console.log('requestQuery: ', req.params)
-  getAllAnswers(req.params.question_id, (err, results) => {
-    if (err) {
-      console.error(err);
-    } else {
-      res.status(200).send(results);
-    }
+
+
+
+
+app.get('/qa/questions/answers', (req, res) => {
+  console.log('💄💄💄💄💄💄💄', req.query.question_id)
+  getAllAnswers(req.query.question_id)
+  .then((ansQueryResults) => {
+    console.log(ansQueryResults);
+    res.status(200).send(ansQueryResults);
+  })
+  .catch((err) => {
+    console.log(err);
   })
 });
 
+
+// app.get('/qa/questions/:question_id/answers', (req, res) => {
+//   //console.log('requestQuery: ', req.params)
+//   getAllAnswers(req.params.question_id, (err, results) => {
+//     if (err) {
+//       console.error(err);
+//     } else {
+//       res.status(200).send(results);
+//     }
+//   })
+// });
 
 
 
